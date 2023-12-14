@@ -10,11 +10,11 @@ extern int		ft_strlen(char *);
 int main()
 {
     const char *src = "Hello assembly!";
-    char *str = strdup(src);
-    char *str_asm = ft_strdup(str);
-    printf("str :%s, str_asm:%s", str, str_asm);
-    free(str);
-    free(str_asm);
+    //char *str = strdup(src);
+    char *str_asm = ft_strdup(src);
+    printf("str_asm:%s",str_asm);
+   // free(str);
+    //free(str_asm);
 
     return 0;
 }
