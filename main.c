@@ -38,6 +38,16 @@ void	test_ft_strdup()
 	printf("\n\n");
 	free(ret);
 	free(ret2);
+	
+    str = "123456789";
+	printf("str = '%s'\n", str);
+	ret = ft_strdup(str);
+	ret2 = strdup(str);
+	printf("ft_strdup = %s\n", ret);
+	printf("rl_strdup = %s\n", ret2);
+	printf("\n\n");
+	free(ret);
+	free(ret2);
 }
 
 void	test_ft_read(void)
@@ -52,11 +62,13 @@ void	test_ft_read(void)
 		char	ft_str[102];
 		char	rl_str[102];
 		printf("retour de ft_read: %zd\n", ft_read(fd, ft_str, 100));
+        perror("errno :");
 		ft_str[100] = '\0';
 		printf("%s\n", ft_str);
 		close(fd);
 		fd = open("Makefile", 0);
 		printf("retour de read: %zd\n", read(fd, rl_str, 100));
+        perror("errno :");
 		rl_str[100] = '\0';
 		printf("%s\n", rl_str);
 		close(fd);
@@ -68,11 +80,13 @@ void	test_ft_read(void)
 		char	ft_str[102];
 		char	rl_str[102];
 		printf("retour de ft_read: %zd\n", ft_read(fd, ft_str, 100));
+        perror("errno :");
 		ft_str[101] = '\0';
 		printf("%s\n", ft_str);
 		close(fd);
 		fd = open("empty", 0);
 		printf("retour de read: %zd\n", read(fd, rl_str, 100));
+        perror("errno :");
 		rl_str[101] = '\0';
 		printf("%s\n", rl_str);
 		close(fd);
@@ -84,11 +98,13 @@ void	test_ft_read(void)
 		char	ft_str[102];
 		char	rl_str[102];
 		printf("retour de ft_read: %zd\n", ft_read(fd, ft_str, 100));
+        perror("errno :");
 		ft_str[101] = '\0';
 		printf("%s\n", ft_str);
 		//close(fd);
 		fd = open("existepas", 0);
 		printf("retour de read: %zd\n", read(fd, rl_str, 100));
+        perror("errno :");
 		rl_str[101] = '\0';
 		printf("%s\n", rl_str);
 		//close(fd);
@@ -106,7 +122,9 @@ void	test_ft_write(void)
 		printf("str = \"\"\n");
 		printf("\033[0m");
 		printf(" <- retour de write - ft_write: %zd\n", ft_write(1, "", 0));
+        perror("errno : ");
 		printf(" <- retour de write - rl_write: %zd\n", write(1, "", 0));
+        perror("errno : ");
 		printf("\n\n");
 	}
 	{
@@ -114,7 +132,9 @@ void	test_ft_write(void)
 		printf("\033[1m");
 		printf("str = %s\033[0m\n", str);
 		printf(" <- retour de write - ft_write: %zd\n", ft_write(1, str, ft_strlen(str)));
+        perror("errno : ");
 		printf(" <- retour de write - rl_write: %zd\n", write(1, str, ft_strlen(str)));
+        perror("errno : ");
 		printf("\n\n");
 	}
 	{
@@ -123,7 +143,9 @@ void	test_ft_write(void)
 		printf("str = %s\n", str);
 		printf("\033[0m");
 		printf(" <- retour de write - ft_write: %zd\n", ft_write(-43, str, ft_strlen(str)));
+        perror("errno : ");
 		printf(" <- retour de write - rl_write: %zd\n", write(-43, str, ft_strlen(str)));
+        perror("errno : ");
 		printf("\n\n");
 	}
 }
@@ -135,8 +157,8 @@ void	test_ft_strcmp()
 	printf("\033[0m");
 
 	{
-		char *dest = "abc";
-		char *src = "abc";
+		char *dest = "\xff\xff";
+		char *src = "\xff";
 		printf("str = '%s'\n", dest);
 		printf("str2 = '%s'\n", src);
 		printf("ft_strcmp = %d\n", ft_strcmp(dest, src));
@@ -179,7 +201,7 @@ void	test_ft_strcpy()
 	printf("\033[0m");
 
 	{
-		char dest[] = "";
+		char dest[20];
 		char *src = "9876";
 		printf("str = '%s'\n", dest);
 		printf("str2 = '%s'\n", src);
@@ -188,7 +210,7 @@ void	test_ft_strcpy()
 		printf("\n");
 	}
 	{
-		char dest1[] = "12345";
+		char dest1[20];
 		char *src = "toto";
 		printf("str = '%s'\n", dest1);
 		printf("str2 = '%s'\n", src);
@@ -197,7 +219,7 @@ void	test_ft_strcpy()
 		printf("\n");
 	}
 	{
-		char dest2[] = "test3";
+		char dest2[20] = "test3";
 		char *src = "salut42";
 		printf("str = '%s'\n", dest2);
 		printf("str2 = '%s'\n", src);
@@ -234,12 +256,12 @@ void	test_ft_strlen()
 
 int main()
 {
-	// test_ft_strlen();
-    test_ft_strcpy();
-	// test_ft_strcmp();
-	// test_ft_write();
-	// test_ft_read();
-	 test_ft_strdup();
+	test_ft_strcmp();
+//    test_ft_strlen();
+//    test_ft_strcpy();
+//    test_ft_write();
+//	test_ft_read();
+//	test_ft_strdup();
 
 	//printf("%d\n", ft_atoi_base("-+g--2a", "0123456789abcdef"));
 //	printf("%d\n", ft_atoi_basec("-+g--2a", "0123456789abcdef"));

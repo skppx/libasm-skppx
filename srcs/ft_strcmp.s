@@ -7,11 +7,12 @@ ft_strcmp:
     ;   rsi - s2 string address
 
 compare_loop:
-    mov     al, [rdi]       ; load the byte from s1(rdi) into AL register
-    cmp     al, [rsi]       ; compare the byte between s1 and s2 (al and rsi)
+    mov     al, byte [rdi]       ; load the byte from s1(rdi) into AL register
+    cmp     al, byte [rsi]       ; compare the byte between s1 and s2 (al and rsi)
     je      continue_loop   ; jump if equal
 
-    sub     al, [rsi]       ; s1 - s2
+    sub     al, byte [rsi]       ; s1 - s2
+    js      negative_result
     ret
 
 continue_loop:
@@ -23,7 +24,8 @@ continue_loop:
     jmp     compare_loop    ;continue the loop
 
 negative_result:
-    neg     al
+    neg al
+    neg eax
     ret
 
 done:

@@ -1,0 +1,33 @@
+     1                                  section .text
+     2                                      global ft_strcpy
+     3                                  
+     4                                  ft_strcpy:
+     5                                  
+     6                                      ;   rdi - destination string address
+     7                                      ;   rsi - source string address
+     8                                  
+     9                                     ; xor rax, rax    ; Clear rax to use it as a counter
+    10                                  
+    11                                  copy_loop:
+    12                                      mov al, BYTE PTR [rsi]   ; load the byte from source(rsi) into AL register
+    12          ******************       warning: `PTR' is not a NASM keyword [-w+ptr]
+    12          ******************       error: symbol `PTR' not defined
+    13                                      mov BYTE PTR [rdi], al   ; store the byte at destination (rdi)
+    13          ******************       warning: `PTR' is not a NASM keyword [-w+ptr]
+    13          ******************       error: symbol `PTR' not defined
+    14                                  
+    15 00000000 3C00                        cmp al, 0       ; Check if it's the null terminator
+    16 00000002 7414                        je end_copy     ; If true exit the loop
+    17                                  
+    18 00000004 48FFC6                      inc rsi         ; move to the next byte in source (rsi)
+    19 00000007 48FFC7                      inc rdi         ; same but in destination (rdi)
+    20                                  
+    21 0000000A EBF4                        jmp copy_loop   ; Repeat the loop
+    22                                  
+    23                                  end_copy:
+    24                                      mov BYTE PTR [rdi], 0
+    24          ******************       warning: `PTR' is not a NASM keyword [-w+ptr]
+    24          ******************       error: symbol `PTR' not defined
+    25 0000000C 4889F8                      mov rax, rdi
+    26 0000000F C3                          ret
+    27                                  

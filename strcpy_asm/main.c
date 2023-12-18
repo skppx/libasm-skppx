@@ -6,8 +6,8 @@ extern size_t ft_strcpy(char *dest, const char *src);
 int main()
 {
     const char *src = "123456789";
-    char dest[20];
-    char dest_asm[20];
+    char dest[] = "123";
+    char dest_asm[] = "123";
 
     strcpy(dest, src);
     ft_strcpy(dest_asm, src);
