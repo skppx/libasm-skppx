@@ -157,8 +157,8 @@ void	test_ft_strcmp()
 	printf("\033[0m");
 
 	{
-		char *dest = "\xff\xff";
-		char *src = "\xff";
+		char *dest = "\xff";
+		char *src = "\xff\xff";
 		printf("str = '%s'\n", dest);
 		printf("str2 = '%s'\n", src);
 		printf("ft_strcmp = %d\n", ft_strcmp(dest, src));
@@ -184,8 +184,17 @@ void	test_ft_strcmp()
 		printf("\n\n");
 	}
 	{
-		char dest2[] = "abcd";
-		char *src = "abc";
+		char dest2[] = "11";
+		char *src = "1";
+		printf("str = '%s'\n", dest2);
+		printf("str2 = '%s'\n", src);
+		printf("ft_strcmp = %d\n", ft_strcmp(dest2, src));
+		printf("rl_strcmp = %d\n", strcmp(dest2, src));
+		printf("\n\n");
+	}
+	{
+		char dest2[] = "11";
+		char *src = "111";
 		printf("str = '%s'\n", dest2);
 		printf("str2 = '%s'\n", src);
 		printf("ft_strcmp = %d\n", ft_strcmp(dest2, src));

@@ -7,25 +7,20 @@ extern malloc
 ft_strdup:
 
     push    rbp
-    mov     rbp, rsp     ; alligne
+    mov     rbp, rsp     ; stack balance
     push    rdi
-    call    ft_strlen   ; length of s in rax
-    inc     rax        ; +1 to the length for '\0'
-    mov     rdi, rax    ; set the size parameter for malloc
-   ; sub     rsp, 0x8
+    call    ft_strlen    ; length of s in rax
+    inc     rax          ; +1 to the length for '\0'
+    mov     rdi, rax     ; set the size parameter for malloc
     call    malloc wrt ..plt      ; call malloc rdi as parameter rax as return value
-   ; add     rsp, 0x8
-    pop     rsi
+    pop     rsi          ; save source string in the stack
     
-   ;  malloc check
-    test    rax, rax    ; check if NULL
+    test    rax, rax        ; check if NULL (malloc check)
     je      malloc_failed
 
-    mov     rdi, rax    ; set the dest parameter for strcpy
-   ; sub     rsp, 0x8
+    mov     rdi, rax    ; set the new malloced string as parameter for strcpy
     call ft_strcpy      ; call ft_strcpy
-   ; add     rsp, 0x8
-    mov     rax, rdi
+    mov     rax, rdi    ; put the copied string in rax for return
     leave
     ret                 ; return the new allocated string
 

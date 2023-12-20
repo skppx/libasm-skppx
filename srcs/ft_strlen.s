@@ -8,7 +8,7 @@ ft_strlen:
     xor rax, rax          ; Initialize the length to zero
 
     repeat_loop:
-        cmp byte [rdi], 0  ; Check if the current character is null
+        cmp byte [rdi], 0      ; Check if the current character is null
         je done                ; If null, we are done
         inc rax                ; Increment the length
         inc rdi                ; Move to the next character
